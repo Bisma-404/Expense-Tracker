@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-wallet"></i> Expense Tracker</h1>
+            <div class="currency-selector">
+            <select id="currency-selector">
+    <option value="Rs." selected>Pakistani Rs (Rs.)</option>
+    <option value="$">US Dollar ($)</option>
+    <option value="€">Euro (€)</option>
+    <option value="£">British Pound (£)</option>
+    <option value="¥">Japanese Yen (¥)</option>
+    <option value="₹">Indian Rupee (₹)</option>
+    <option value="₽">Russian Ruble (₽)</option>
+    <option value="₩">South Korean Won (₩)</option>
+    <option value="R$">Brazilian Real (R$)</option>
+    <option value="CA$">Canadian Dollar (CA$)</option>
+    <option value="A$">Australian Dollar (A$)</option>
+    <option value="CHF">Swiss Franc (CHF)</option>
+</select>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <div class="dashboard-columns">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <section class="chart-section">
+                        <h2><i class="fas fa-chart-pie"></i> Spending Analysis</h2>
+                        <div class="chart-container">
+                            <canvas id="financeChart"></canvas>
+                            <div class="chart-placeholder" id="chart-placeholder">
+                                <i class="fas fa-chart-pie"></i>
+                                <p>No spending data</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="history-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-history"></i> Transaction History</h3>
+                            <button class="clear-btn" id="clear-all">Clear All</button>
+                        </div>
+                        <div class="history-container">
+                            <ul id="transaction-list"></ul>
+                            <div class="empty-state" id="empty-state">
+                                <i class="fas fa-exchange-alt"></i>
+                                <p>No transactions yet</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column -->
+                <div class="right-column">
+                    <section class="balance-section">
+                        <h3>Your Balance</h3>
+                        <div class="balance-amount" id="balance">Rs.0.00</div>
+                    </section>
+
+                    <section class="summary-section">
+                        <div class="summary-card income">
+                            <div class="summary-content">
+                                <h3>Income</h3>
+                                <p id="money-plus">+Rs.0.00</p>
+                            </div>
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="summary-card expense">
+                            <div class="summary-content">
+                                <h3>Expense</h3>
+                                <p id="money-minus">-Rs.0.00</p>
+                            </div>
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                    </section>
+
+                    <section class="form-section">
+                        <h3><i class="fas fa-plus-circle"></i> Add Transaction</h3>
+                        <form id="transaction-form">
+                            <div class="form-group">
+                                <label for="transaction-text">Description</label>
+                                <input type="text" id="transaction-text" placeholder="e.g. Groceries" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transaction-amount">Amount</label>
+                                <input type="number" id="transaction-amount" placeholder="e.g. -200 or 5000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transaction-category">Category</label>
+                                <select id="transaction-category">
+                                   <option value="food">Food</option>
+                                   <option value="transport">Transport</option>
+                                   <option value="shopping">Shopping</option>
+                                     <option value="housing">Housing</option>
+                                     <option value="utilities">Utilities</option>
+                                     <option value="health">Health</option>
+                                     <option value="education">Education</option>
+                                     <option value="entertainment">Entertainment</option>
+                                     <option value="salary">Salary</option>
+                                     <option value="investment">Investment</option>
+                                     <option value="gifts">Gifts</option>
+                                     <option value="other">Other</option>
+                                 </select>
+                            </div>
+                            <button type="submit" class="submit-btn">Add Transaction</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Developed by Bisma Shahid</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
