@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
+   
     const balanceElement = document.getElementById('balance');
     const incomeElement = document.getElementById('money-plus');
     const expenseElement = document.getElementById('money-minus');
@@ -13,11 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const chartPlaceholder = document.getElementById('chart-placeholder');
     const emptyState = document.getElementById('empty-state');
     
-    // Chart setup
     const ctx = document.getElementById('financeChart').getContext('2d');
     let financeChart;
     
-    // Category data
     const categories = {
     food: { emoji: '🍔', color: '#4CC9F0' },
     transport: { emoji: '🚗', color: '#F72585' },
@@ -33,16 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
     other: { emoji: '📌', color: '#6C757D' }
 };
     
-    // Initialize app
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     let currency = localStorage.getItem('currency') || 'Rs.';
     
-    // Format number with commas
     function formatNumber(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     
-    // Initialize chart
     function initChart() {
         financeChart = new Chart(ctx, {
             type: 'pie',
@@ -67,11 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updateChart();
     }
     
-    // Update chart
     function updateChart() {
         const categoryTotals = {};
         
-        // Calculate totals by category
         transactions.forEach(transaction => {
             if (transaction.amount < 0) { // Only expenses for the chart
                 const category = transaction.category;
@@ -88,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
         financeChart.data.datasets[0].backgroundColor = backgroundColors;
         financeChart.update();
         
-        // Show/hide placeholder
         if (data.length > 0) {
             chartPlaceholder.style.display = 'none';
         } else {
@@ -96,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Update all values
     function updateValues() {
         // Calculate totals
         const amounts = transactions.map(t => t.amount);
@@ -104,13 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const income = amounts.filter(item => item > 0).reduce((acc, item) => acc + item, 0);
         const expense = amounts.filter(item => item < 0).reduce((acc, item) => acc + item, 0) * -1;
         
-        // Update UI with formatted numbers
         balanceElement.textContent = `${currency}${formatNumber(total.toFixed(2))}`;
         incomeElement.textContent = `+${currency}${formatNumber(income.toFixed(2))}`;
         expenseElement.textContent = `-${currency}${formatNumber(expense.toFixed(2))}`;
     }
     
-    // Add transaction to DOM
 function addTransactionDOM(transaction) {
     const li = document.createElement('li');
     li.className = 'transaction-item';
@@ -142,7 +131,6 @@ function addTransactionDOM(transaction) {
     
     transactionList.appendChild(li);
     
-    // Add event listeners
     li.querySelector('.edit-btn').addEventListener('click', () => editTransaction(transaction.id));
     li.querySelector('.delete-btn').addEventListener('click', () => deleteTransaction(transaction.id));
 }
@@ -159,19 +147,15 @@ function editTransaction(id) {
     const transaction = transactions.find(t => t.id === id);
     if (!transaction) return;
     
-    // Fill the form with the transaction data
     textInput.value = transaction.text;
     amountInput.value = transaction.amount;
     categoryInput.value = transaction.category;
     
-    // Remove the transaction being edited
     transactions = transactions.filter(t => t.id !== id);
     
-    // Focus on the amount field for quick editing
     amountInput.focus();
 }
-    
-    // Render all transactions
+
     function renderTransactions() {
         transactionList.innerHTML = '';
         
@@ -185,8 +169,6 @@ function editTransaction(id) {
         updateValues();
         updateChart();
     }
-    
-    // Add new transaction
 function addTransaction(e) {
     e.preventDefault();
     
@@ -196,7 +178,7 @@ function addTransaction(e) {
     }
     
     const transaction = {
-        id: Date.now(), // New ID for new transactions
+        id: Date.now(), 
         text: textInput.value.trim(),
         amount: +amountInput.value,
         category: categoryInput.value,
@@ -207,12 +189,9 @@ function addTransaction(e) {
     saveTransactions();
     renderTransactions();
     
-    // Reset form
     transactionForm.reset();
     textInput.focus();
 }
-    
-    // Clear all transactions
     function clearTransactions() {
         if (transactions.length === 0 || !confirm('Are you sure you want to clear all transactions?')) {
             return;
@@ -223,23 +202,19 @@ function addTransaction(e) {
         renderTransactions();
     }
     
-    // Save to localStorage
     function saveTransactions() {
         localStorage.setItem('transactions', JSON.stringify(transactions));
     }
     
-    // Handle currency change
     function handleCurrencyChange() {
         currency = currencySelector.value;
         localStorage.setItem('currency', currency);
         renderTransactions();
     }
     
-    // Initialize
     initChart();
     renderTransactions();
     
-    // Event listeners
     transactionForm.addEventListener('submit', addTransaction);
     clearBtn.addEventListener('click', clearTransactions);
     currencySelector.addEventListener('change', handleCurrencyChange);
