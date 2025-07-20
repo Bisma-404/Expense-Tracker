@@ -62,4 +62,4 @@ This project is for academic and institutional use. Please credit the developers
 **Bisma Shahid**  
 Department of Software Engineering  
 FAST NUCES Karachi  
-   git clone https://github.com/your-username/expense-tracker.git
+   
