@@ -3,6 +3,10 @@
 A responsive, browser-based **personal finance management system** built with **HTML, CSS, JavaScript, and Chart.js**. It allows users to **track income & expenses**, categorize spending, switch currencies, and visualize data with an interactive pie chart. All data is saved in **LocalStorage** for persistence.  
 
 ---
+## Preview
+![Expense Tracker Preview](image/website.png)
+
+---
 
 ## Overview  
 
