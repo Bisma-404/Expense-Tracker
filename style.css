@@ -64,7 +64,6 @@ body {
     gap: 30px;
 }
 
-/* Left Column Styles */
 .left-column {
     display: flex;
     flex-direction: column;
@@ -150,7 +149,6 @@ body {
     list-style: none;
 }
 
-/* Transaction Item Styles */
 .transaction-item {
     display: flex;
     justify-content: space-between;
@@ -193,7 +191,6 @@ body {
     color: var(--expense-color);
 }
 
-/* Improved Action Buttons */
 .transaction-actions {
     display: flex;
     gap: 8px;
@@ -269,7 +266,6 @@ body {
     font-size: 1.1rem;
 }
 
-/* Right Column Styles */
 .right-column {
     display: flex;
     flex-direction: column;
