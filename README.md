@@ -35,7 +35,8 @@ This Expense Tracker app is designed to simplify money management by offering:
 ---
 
 ##  Try it out now
-https://bisma-404.github.io/TODO-List/
+
+https://bisma-404.github.io/Expense-Tracker/
 
 ---
 
